@@ -1,7 +1,6 @@
 import bpy
 from bpy.types import AddonPreferences
-from ... import addon_updater_ops
-from ... import __package__
+from ... import addon_updater_ops, __package__
 
 @addon_updater_ops.make_annotations
 class KumoGen_Updater_Preferences(AddonPreferences):
@@ -11,7 +10,7 @@ class KumoGen_Updater_Preferences(AddonPreferences):
 	auto_check_update = bpy.props.BoolProperty(
 		name="Auto-check for Update",
 		description="If enabled, auto-check for updates using an interval",
-		default=True)
+		default=False)
 
 	updater_interval_months = bpy.props.IntProperty(
 		name='Months',
