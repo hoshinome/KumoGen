@@ -15,7 +15,7 @@ bl_info = {
     "author": "hoshinome",
     "description": "Add clouds.",
     "blender": (2, 80, 0),
-    "version": (2, 2, 2),
+    "version": (2, 2, 3),
     "location": "",
     "warning": "",
     "category": "Generic",

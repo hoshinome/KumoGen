@@ -35,8 +35,7 @@ class KumoGen_Panel(Panel):
             ).url = "https://github.com/hoshinome/KumoGen"
             col.label(text=f"Version: {bl_info['version']}")
             if addon_updater_ops.updater.update_ready:
-                layout.label(text="Custom update message", icon="INFO")
-            layout.label(text="")
+                layout.label(text="KumoGen Update", icon="INFO")
             addon_updater_ops.update_notice_box_ui(self, context)
         #---Render---
         if scn_sets.panel_tabs == "Render":
