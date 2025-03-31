@@ -1,6 +1,7 @@
 import bpy
-from bpy.types import Panel
+from bpy.types import Panel, UILayout
 from ..settings.scene import KumoGen_Scene
+from ... import addon_updater_ops, bl_info
 
 class KumoGen_Panel(Panel):
     bl_space_type = "VIEW_3D"
@@ -19,7 +20,25 @@ class KumoGen_Panel(Panel):
         row = layout.row(align=True)
         row.scale_y = 1.5
         row.prop(scn_sets, "panel_tabs", expand=True)
+        #---Updater---
+        if scn_sets.panel_tabs == "Updater":
+            addon_updater_ops.check_for_update_background()
 
+            row = layout.row(align=True)
+            row.scale_y = 1.5
+            col = layout.column()
+            col.scale_y = 0.7
+            row.operator(
+                "wm.url_open", 
+                text="Repository", 
+                icon="URL"
+            ).url = "https://github.com/hoshinome/KumoGen"
+            col.label(text=f"Version: {bl_info['version']}")
+            if addon_updater_ops.updater.update_ready:
+                layout.label(text="Custom update message", icon="INFO")
+            layout.label(text="")
+            addon_updater_ops.update_notice_box_ui(self, context)
+        #---Render---
         if scn_sets.panel_tabs == "Render":
             layout = self.layout
             col = layout.column(align=True)
@@ -39,6 +58,7 @@ class KumoGen_Panel(Panel):
             layout.prop(context.space_data, "clip_end", text="View End")
             if context.scene.camera:
                 layout.prop(scene.camera.data, "clip_end", text="Camera End")
+        #---Clouds---
         if scn_sets.panel_tabs == "Clouds":
             layout = self.layout
             wm = bpy.context.window_manager.KumoGen_Mesh_Types

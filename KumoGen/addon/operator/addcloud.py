@@ -1,6 +1,13 @@
 import bpy, os
 from bpy.types import Operator
-from ..function import deleate_cloud, property_exists
+from ..function import deleate_cloud
+
+def property_exists(prop_path, glob, loc):
+    try:
+        eval(prop_path, glob, loc)
+        return True
+    except:
+        return False
 
 class CloudAddOperator(Operator):
     bl_idname = "kumogen.addcloud"
@@ -14,7 +21,7 @@ class CloudAddOperator(Operator):
 
     def execute(self, context):
         blend_file= os.path.join(os.path.dirname(__file__), '..', 'assets', 'Cloud.blend')
-        if (property_exists.property_exists("bpy.data.collections", globals(), locals()) and ('KumoGen-Cube' in bpy.data.collections or 'KumoGen-Sphere' in bpy.data.collections)):
+        if (property_exists("bpy.data.collections", globals(), locals()) and ('KumoGen-Cube' in bpy.data.collections or 'KumoGen-Sphere' in bpy.data.collections)):
             pass
         else:
             if not os.path.exists(blend_file):
