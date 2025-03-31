@@ -21,8 +21,7 @@ bl_info = {
     "category": "Generic",
 }
 
-from . import (addon,
-			   addon_updater_ops)
+from . import addon, addon_updater_ops
 
 def register():
 	addon.register()
