@@ -12,7 +12,7 @@ def deleate_cloud():
             bpy.data.collections.remove(bpy.data.collections['KumoGen-Cube'], do_unlink=True)
         elif 'KumoGen-Sphere' in bpy.data.collections:
             bpy.data.collections.remove(bpy.data.collections['KumoGen-Sphere'], do_unlink=True)
-    #Node Groups
+    #Node Group
     if 'KumoGen-Clouds' in bpy.data.node_groups:
         bpy.data.node_groups.remove(bpy.data.node_groups['KumoGen-Clouds'], do_unlink=True)
         bpy.data.node_groups.remove(bpy.data.node_groups['KumoGen-Cumulus'], do_unlink=True)

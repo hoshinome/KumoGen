@@ -27,14 +27,14 @@ class CloudAddOperator(Operator):
             if not os.path.exists(blend_file):
                 self.report({'ERROR'}, f"File not found: {blend_file}")
                 return {'CANCELLED'}
-            deleate_cloud.deleate_cloud()#雲を削除
+            deleate_cloud.deleate_cloud()
             before_data = context.view_layer.active_layer_collection
             context.view_layer.active_layer_collection = context.view_layer.layer_collection
             wm = bpy.context.window_manager.KumoGen_Mesh_Types
-            if wm.mesh_types == 'CUBE':#立方体
+            if wm.mesh_types == 'CUBE':
                 bpy.ops.wm.append(directory=os.path.join(blend_file, 'Collection'),filename='KumoGen-Cube')
                 bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Scale"].inputs[0].default_value = 1
-            elif wm.mesh_types == 'SPHERE':#球体
+            elif wm.mesh_types == 'SPHERE':
                 bpy.ops.wm.append(directory=os.path.join(blend_file, 'Collection'),filename='KumoGen-Sphere')
                 bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Scale"].inputs[0].default_value = 0
             context.view_layer.active_layer_collection = before_data
