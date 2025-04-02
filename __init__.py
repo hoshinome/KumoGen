@@ -15,12 +15,12 @@ bl_info = {
     "author": "hoshinome",
     "description": "Add clouds.",
     "blender": (2, 80, 0),
-    "version": (2, 2, 4),
+    "version": (2, 3, 0),
     "location": "",
     "warning": "",
     "category": "Generic",
 }
-
+print(" KUMOGEN ".center(100, "-"))
 from . import addon, addon_updater_ops
 
 def register():

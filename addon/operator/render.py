@@ -7,7 +7,6 @@ class RenderOperator(bpy.types.Operator):
     def execute(self, context):
         bpy.context.scene.render.engine = 'CYCLES'
         bpy.context.scene.cycles.device = 'GPU'
-        bpy.context.scene.cycles.shading_system = True
         bpy.context.scene.cycles.use_preview_adaptive_sampling = False
         bpy.context.scene.cycles.use_preview_adaptive_sampling = True
         bpy.context.scene.cycles.preview_samples = 32

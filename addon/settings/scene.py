@@ -7,6 +7,6 @@ class KumoGen_Scene(PropertyGroup):
         items=[
             ("Clouds", "Clouds", "Cloud Settings", "NONE", 0),
             ("Render", "Render", "Render Settings", "NONE", 1),
-            ("Updater", "", "Updater Tabs", "TOOL_SETTINGS", 2),
+            ("Update", "", "Update Tab", "TOOL_SETTINGS", 2),
         ]
     )
