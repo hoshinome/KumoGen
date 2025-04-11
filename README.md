@@ -1,2 +1,2 @@
-![KumoGen-2 3 0](https://github.com/user-attachments/assets/ccc948a6-790c-4f86-82bc-a1162fa0215c)
+![KumoGen-2 4 0](https://github.com/user-attachments/assets/c1b75d91-1169-444b-ad2b-724c373d2c24)
 https://maasu.booth.pm/items/6720921
