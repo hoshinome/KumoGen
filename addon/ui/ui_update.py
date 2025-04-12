@@ -19,9 +19,9 @@ from ... import addon_updater_ops, version, panel_label
 from ..resources import icons
 
 class KUMOGEN_PT_update(Panel):
-    bl_idname = "KUMOGEN_PT_update"
-    bl_label = "Update"
-    bl_category = panel_label
+    bl_idname      = "KUMOGEN_PT_update"
+    bl_label       = "Update"
+    bl_category    = panel_label
     bl_space_type  = "VIEW_3D"
     bl_region_type = "UI"
     bl_context     = ""

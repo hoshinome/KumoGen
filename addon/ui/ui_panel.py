@@ -257,9 +257,9 @@ def draw_render(self,context,scene):
 #  `Y8bood8P'  o888o `Y888""8o 8""888P' 8""888P' `Y8bod8P' 8""888P'
 
 class KUMOGEN_PT_main(Panel):
-    bl_idname = "KUMOGEN_PT_main"
-    bl_label = "KumoGen"
-    bl_category = panel_label
+    bl_idname      = "KUMOGEN_PT_main"
+    bl_label       = "KumoGen"
+    bl_category    = panel_label
     bl_space_type  = "VIEW_3D"
     bl_region_type = "UI"
     bl_context     = ""
