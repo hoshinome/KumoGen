@@ -22,13 +22,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 # o888bood8P'  o888o    o888o o888o o888o o888o   `Y8bod8P'   
 
 bl_info = {
-	"name"           : "KumoGen",
+    "name"           : "KumoGen",
     "description"    : "KumoGen 2.4.1 for Blender 3.6+",
     "version"        : (2, 4, 1),
     "blender"        : (3, 6, 0),
     "author"         : "hoshinome",
-	"support"        : "COMMUNITY",
-	"location"       : "N-Panel > KumoGen > KumoGen",
+    "support"        : "COMMUNITY",
+    "location"       : "N-Panel > KumoGen > KumoGen",
     "doc_url"        : "https://maasu.booth.pm/items/6720921",
     "tracker_url"    : "",
     "category"       : "",
