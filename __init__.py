@@ -23,8 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 bl_info = {
 	"name"           : "KumoGen",
-    "description"    : "KumoGen 2.4.1 for Blender 3.6+",
-    "version"        : (2, 4, 2),
+    "description"    : "KumoGen 2.4.3 for Blender 3.6+",
+    "version"        : (2, 4, 3),
     "blender"        : (3, 6, 0),
     "author"         : "hoshinome",
 	"support"        : "COMMUNITY",
