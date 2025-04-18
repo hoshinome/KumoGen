@@ -44,16 +44,16 @@ def draw_clouds (self, context):
         box = self.layout.box()
         box.label(text="Object Settings:", icon="OBJECT_DATA")
         if "KumoGen-Cube" in bpy.data.objects:
-            ui.kumogen_tabs(box, wm, "altitude", "Altitude")
+            ui.tabs(box, wm, "altitude", "Altitude")
             if wm.altitude:
                 box.prop(bpy.data.objects["KumoGen-Cube"], "location", index=2, text="Cloud Altitude")
         if "KumoGen-Sphere" in bpy.data.objects:
-            ui.kumogen_tabs(box, wm, "decimate", "Decimate")
+            ui.tabs(box, wm, "decimate", "Decimate")
             if wm.decimate:
                 box_Decimate = box.box()
                 box_Decimate.label(text="Decimate:", icon="MOD_DECIM")
                 box_Decimate.prop(bpy.data.objects["KumoGen-Sphere"].modifiers["Decimate"], "ratio", text="Ratio",)
-            ui.kumogen_tabs(box, wm, "scale", "Scale")
+            ui.tabs(box, wm, "scale", "Scale")
             if wm.scale:
                 box_Scale = box.box()
                 box_Scale.label(text="Scale:", icon="EMPTY_ARROWS")
@@ -61,59 +61,59 @@ def draw_clouds (self, context):
         # Shader Settings
         box = self.layout.box()
         box.label(text="Shader Settings:", icon="SHADING_RENDERED")
-        ui.kumogen_tabs(box, wm, "basic_controls", "Basic Controls")
+        ui.tabs(box, wm, "basic_controls", "Basic Controls",)
         if wm.basic_controls:
             box2 = box.box()
             box2.label(text="Basic Controls:", icon="ANCHOR_CENTER")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[3], "default_value", text="Color")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[86], "default_value", text="Animation")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[4], "default_value", text="Density")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[5], "default_value", text="Seed")
-        if "KumoGen-Sphere" in bpy.data.collections:
-            ui.kumogen_tabs(box, wm, "gradient", "Gradient")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[5], "default_value", text="Color")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[9], "default_value", text="Animation")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[6], "default_value", text="Density")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[7], "default_value", text="Seed")
+        if "KumoGen-Sphere" in bpy.data.objects:
+            ui.tabs(box, wm, "gradient", "Gradient")
             if wm.gradient:
                 box2 = box.box()
                 box2.label(text="Gradient:", icon="GP_MULTIFRAME_EDITING")
-                box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[7], "default_value", text="Gradient")
-                box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[8], "default_value", text="Scale")
-                box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[9], "default_value", text="Detail")
-        ui.kumogen_tabs(box, wm, "clouds", "Clouds")
+                box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[11], "default_value", text="Gradient")
+                box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[12], "default_value", text="Scale")
+                box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[13], "default_value", text="Detail")
+        ui.tabs(box, wm, "clouds", "Clouds")
         if wm.clouds:
             box2 = box.box()
-            box2.label(text="Clouds", icon="OUTLINER_OB_VOLUME")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[0], "default_value", text="Cumulus")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[1], "default_value", text="Cirrocumulus")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[2], "default_value", text="Stratocumulus")
-        ui.kumogen_tabs(box, wm, "layer", "Cloud Layers")
+            box2.label(text="Clouds:", icon="OUTLINER_OB_VOLUME")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[1], "default_value", text="Cumulus")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[2], "default_value", text="Cirrocumulus")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[3], "default_value", text="Stratocumulus")
+        ui.tabs(box, wm, "layer", "Cloud Layers")
         if wm.layer:
             box2 = box.box()
             box2.label(text="Cloud Layers:", icon="MOD_INSTANCE")
-            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[0].default_value):
-                box3 = box2.box()
-                box3.label(text="Cumulus:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[11], "default_value", text="Layer 1")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[12], "default_value", text="Layer 2")
             if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[1].default_value):
                 box3 = box2.box()
-                box3.label(text="Cirrocumulus:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[32], "default_value", text="Layer 1")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[33], "default_value", text="Layer 2")
+                box3.label(text="Cumulus:")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[15], "default_value", text="Layer 1")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[16], "default_value", text="Layer 2")
             if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[2].default_value):
                 box3 = box2.box()
+                box3.label(text="Cirrocumulus:")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[36], "default_value", text="Layer 1")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[37], "default_value", text="Layer 2")
+            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[3].default_value):
+                box3 = box2.box()
                 box3.label(text="Stratocumulus:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[57], "default_value", text="Layer 1")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[58], "default_value", text="Layer 2")
-        ui.kumogen_tabs(box, wm, "layer_controls", "Layer Controls")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[61], "default_value", text="Layer 1")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[62], "default_value", text="Layer 2")
+        ui.tabs(box, wm, "layer_controls", "Layer Controls")
         if wm.layer_controls:
             box2 = box.box()
             box2.label(text="Layer Controls:", icon="MOD_HUE_SATURATION")
             layer_controls(box2, wm)
-        ui.kumogen_tabs(box, wm, "mapping", "Mapping")
+        ui.tabs(box, wm, "mapping", "Mapping")
         if wm.mapping:
             box2 = box.box()
             box2.label(text="Mapping:", icon="EMPTY_AXIS")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[82], "default_value", text="Location")
-            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[83], "default_value", text="Rotation")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[86], "default_value", text="Location")
+            box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[87], "default_value", text="Rotation")
             if "KumoGen-Cube" in bpy.data.objects:
                 box2.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Scale"].inputs[2], "default_value", text="Scale")
             elif "KumoGen-Sphere" in bpy.data.objects:
@@ -126,99 +126,103 @@ def draw_clouds (self, context):
 
 #---Cumulus---
 def layer_controls(box2,wm):
-    if (bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[0].default_value) and
-        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[11].default_value) or 
-        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[12].default_value)):
-        ui.kumogen_tabs(box2, wm, "cumulus", "Cumulus")
+    if (bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[1].default_value) and
+        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[15].default_value) or 
+        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[16].default_value)):
+        ui.tabs(box2, wm, "cumulus", "Cumulus")
         if wm.cumulus:
             # Layer 1
-            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[11].default_value):
+            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[15].default_value):
                 box3 = box2.box()
                 box3.label(text="Layer 1:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[14], "default_value", text="Coverage")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[15], "default_value", text="Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[16], "default_value", text="Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[17], "default_value", text="Roughness")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[18], "default_value", text="Distortion")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[19], "default_value", text="Location X")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[20], "default_value", text="Location Y")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[21], "default_value", text="Rotation")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[18], "default_value", text="Coverage")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[19], "default_value", text="Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[20], "default_value", text="Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[21], "default_value", text="Roughness")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[22], "default_value", text="Distortion")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[23], "default_value", text="Location X")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[24], "default_value", text="Location Y")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[25], "default_value", text="Rotation")
             # Layer 2
-            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[12].default_value):
+            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[16].default_value):
                 box3 = box2.box()
                 box3.label(text="Layer 2:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[23], "default_value", text="Coverage")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[24], "default_value", text="Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[25], "default_value", text="Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[26], "default_value", text="Roughness")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[27], "default_value", text="Distortion")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[28], "default_value", text="Location X")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[29], "default_value", text="Location Y")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[30], "default_value", text="Rotation")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[27], "default_value", text="Coverage")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[28], "default_value", text="Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[29], "default_value", text="Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[30], "default_value", text="Roughness")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[31], "default_value", text="Distortion")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[32], "default_value", text="Location X")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[33], "default_value", text="Location Y")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[34], "default_value", text="Rotation")
 #---Ciccrocumulus---
-    if (bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[1].default_value) and
-        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[32].default_value) or
-        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[33].default_value)):
-        ui.kumogen_tabs(box2, wm, "cirrocumulus", "Cirrocumulus")
+    if (bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[2].default_value) and
+        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[36].default_value) or
+        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[37].default_value)):
+        ui.tabs(box2, wm, "cirrocumulus", "Cirrocumulus")
         if wm.cirrocumulus:
             #Layer 1
-            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[32].default_value):
+            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[36].default_value):
                 box3 = box2.box()
                 box3.label(text="Layer 1:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[35], "default_value", text="Coverage")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[36], "default_value", text="Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[37], "default_value", text="Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[38], "default_value", text="Roughness")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[39], "default_value", text="Distortion")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[40], "default_value", text="Location X")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[41], "default_value", text="Location Y")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[42], "default_value", text="Rotation")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[39], "default_value", text="Coverage")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[40], "default_value", text="Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[41], "default_value", text="Distrotion")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[42], "default_value", text="Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[43], "default_value", text="Noise Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[44], "default_value", text="Noise Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[45], "default_value", text="Noise Roughness")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[46], "default_value", text="Location X")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[47], "default_value", text="Location Y")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[48], "default_value", text="Rotation")
             # Layer 2
-            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[33].default_value):
+            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[37].default_value):
                 box3 = box2.box()
                 box3.label(text="Layer 2:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[46], "default_value", text="Coverage")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[47], "default_value", text="Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[48], "default_value", text="Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[49], "default_value", text="Roughness")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[50], "default_value", text="Distortion")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[51], "default_value", text="Location X")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[52], "default_value", text="Location Y")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[53], "default_value", text="Rotation")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[50], "default_value", text="Coverage")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[51], "default_value", text="Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[52], "default_value", text="Distrotion")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[53], "default_value", text="Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[54], "default_value", text="Noise Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[55], "default_value", text="Noise Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[56], "default_value", text="Noise Roughness")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[57], "default_value", text="Location X")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[58], "default_value", text="Location Y")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[59], "default_value", text="Rotation")
 #---Stratocumulus---
-    if (bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[2].default_value) and
-        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[57].default_value) or
-        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[58].default_value)):
-        ui.kumogen_tabs(box2, wm, "stratocumulus", "Stratocumulus")
+    if (bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[3].default_value) and
+        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[61].default_value) or
+        bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[62].default_value)):
+        ui.tabs(box2, wm, "stratocumulus", "Stratocumulus")
         if wm.stratocumulus:
             #Layer 1
-            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[57].default_value):
+            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[61].default_value):
                 box3 =box2.box()
                 box3.label(text="Layer 1:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[60], "default_value", text="Coverage")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[61], "default_value", text="Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[62], "default_value", text="Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[63], "default_value", text="Roughness")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[64], "default_value", text="Distortion")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[65], "default_value", text="Noise Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[66], "default_value", text="Noise Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[67], "default_value", text="Location X")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[68], "default_value", text="Location Y")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[69], "default_value", text="Rotation")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[64], "default_value", text="Coverage")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[65], "default_value", text="Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[66], "default_value", text="Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[67], "default_value", text="Roughness")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[68], "default_value", text="Distortion")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[69], "default_value", text="Noise Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[70], "default_value", text="Noise Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[72], "default_value", text="Location X")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[73], "default_value", text="Location Y")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[74], "default_value", text="Rotation")
             #Layer 2
-            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[58].default_value):
+            if bool(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[62].default_value):
                 box3 =box2.box()
                 box3.label(text="Layer 2:")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[71], "default_value", text="Coverage")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[72], "default_value", text="Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[73], "default_value", text="Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[74], "default_value", text="Roughness")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[75], "default_value", text="Distortion")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[76], "default_value", text="Noise Scale")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[77], "default_value", text="Noise Detail")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[78], "default_value", text="Location X")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[79], "default_value", text="Location Y")
-                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[80], "default_value", text="Rotation")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[75], "default_value", text="Coverage")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[76], "default_value", text="Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[77], "default_value", text="Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[78], "default_value", text="Roughness")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[79], "default_value", text="Distortion")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[80], "default_value", text="Noise Scale")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[81], "default_value", text="Noise Detail")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[82], "default_value", text="Location X")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[83], "default_value", text="Location Y")
+                box3.prop(bpy.data.materials["KumoGen-Clouds"].node_tree.nodes["KumoGen-Clouds"].inputs[84], "default_value", text="Rotation")
 
 # ooooooooo.                               .o8
 # `888   `Y88.                            "888

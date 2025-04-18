@@ -17,7 +17,7 @@ from pathlib import Path
 
 import bpy
 
-from ..vendor.t3dn_bip import previews
+from .t3dn_bip import previews
 
 previews.settings.WARNINGS = False
 

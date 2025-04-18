@@ -36,11 +36,11 @@ class KUMOGEN_OT_add_clouds(Operator):
             active_object = context.view_layer.objects.active
 
             # Create or get KumoGen-Clouds collection
-            if "KumoGen-Clouds" not in bpy.data.collections:
-                cloud_collection = bpy.data.collections.new("KumoGen-Clouds")
+            if "KumoGen" not in bpy.data.collections:
+                cloud_collection = bpy.data.collections.new("KumoGen")
                 context.scene.collection.children.link(cloud_collection)
             else:
-                cloud_collection = bpy.data.collections["KumoGen-Clouds"]
+                cloud_collection = bpy.data.collections["KumoGen"]
 
             # Append based on mesh type
             wm = bpy.context.window_manager.MeshTypes
@@ -67,7 +67,7 @@ class KUMOGEN_OT_add_clouds(Operator):
 
                 # Remove from other collections first
                 for coll in appended_object.users_collection:
-                    if coll.name != "KumoGen-Clouds":
+                    if coll.name != "KumoGen":
                         coll.objects.unlink(appended_object)
 
                 # Link to KumoGen-Clouds if not already there
